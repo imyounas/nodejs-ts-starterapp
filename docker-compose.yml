@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  mongo-db:
+    image: mongo:latest
+    container_name: mongodb-iy
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE= ProductsDB
+      - MONGO_INITDB_ROOT_USERNAME= root
+      - MONGO_INITDB_ROOT_PASSWORD= ABC123ssi
+    ports:
+      - "27027:27027"
+    volumes:
+      - db_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+  nodets-starterapp:
+    build: .
+    container_name: nodets-starter-iy
+    restart: always
+    depends_on:
+      - mongo-db
+    ports:
+      - 5052:3000
+
+volumes:
+  db_data:
+    driver: local
