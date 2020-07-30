@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/WebServer.js"
+    "start": "nodemon dist/WebServer.js",
+    "tsc": "tsc -p tsconfig.json"
   },
   "author": "",
   "license": "ISC",
@@ -31,7 +32,8 @@
     "reflect-metadata": "^0.1.13",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
-    "ts-node": "^8.10.2"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
@@ -44,7 +46,6 @@
     "@types/morgan": "^1.9.1",
     "@types/node": "^14.0.13",
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.4",
-    "typescript": "^3.9.5"
+    "nodemon": "^2.0.4"
   }
 }

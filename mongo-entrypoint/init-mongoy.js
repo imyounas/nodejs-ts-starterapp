@@ -1,8 +1,7 @@
-use admin
 db.createUser(
     {
-        user: "root",
+        user: "sa",
         pwd: "ABC123ssi",  // Or  "<cleartext password>"
-        roles: ["readWrite", "dbAdmin"]
+        roles: [{ role: "dbOwner", db: "myproducts" }]
     }
 )

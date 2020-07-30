@@ -27,7 +27,7 @@ class ExpressApp {
     this.expApp = express();
     this.port = process.env.SERVER_PORT || 3000;
     this.isProdEnv = process.env.NODE_ENV === "production" ? true : false;
-    this.mongoUser = process.env.MONGO_USER || "root";
+    this.mongoUser = process.env.MONGO_USER || "sa";
     this.mongoPassword = process.env.MONGO_PASSWORD || "ABC123ssi";
     this.mongoUrl = process.env.MONGO_PATH || "@localhost:27017";
     this.mongoDB = process.env.MONGO_DATABASE || "ProductsDB";
@@ -87,9 +87,15 @@ class ExpressApp {
 
   private connectToDatabase() {
 
-    const options = { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false };
+    try {
+      const options = { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false };
 
-    mongoose.connect(`mongodb://${this.mongoUser}:${this.mongoPassword}${this.mongoUrl}/${this.mongoDB}?authSource=admin`, { ...options });
+      mongoose.connect(`mongodb://${this.mongoUser}:${this.mongoPassword}${this.mongoUrl}/${this.mongoDB}?authSource=admin`, { ...options });
+    } catch (exc) {
+      console.log("Error connecting mongoDB Server ")
+      console.log(exc);
+    }
+
   }
 }
 
